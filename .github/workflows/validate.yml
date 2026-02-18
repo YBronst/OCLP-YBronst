@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     name: Validate
-    runs-on: macos-15
+    runs-on: x86_64_monterey
     if: github.repository_owner == 'YBronst'
     steps:
       - uses: actions/checkout@v4
