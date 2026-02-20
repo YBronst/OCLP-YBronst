@@ -12,8 +12,10 @@ jobs:
   build:
     name: Validate
     runs-on: x86_64_monterey
-    if: github.repository_owner == '**'
+    if: github.repository_owner == 'YBronst'
     steps:
       - uses: actions/checkout@v4
+      - name: Install package requirements
+        run: /Library/Frameworks/Python.framework/Versions/3.11/bin/pip3 install -r requirements.txt
       - name: Validate
         run: /Library/Frameworks/Python.framework/Versions/3.11/bin/python3 OpenCore-Patcher-GUI.command --validate
