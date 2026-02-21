@@ -33,7 +33,6 @@ class HelpFrame(wx.Frame):
             - Text:  Following resources are available:
             - Button: Official Guide
             - Button: Community Discord Server
-            - Button: Official Phone Support
             - Button: Return to Main Menu
         """
 
@@ -49,7 +48,6 @@ class HelpFrame(wx.Frame):
 
         buttons = {
             "Official Guide":           self.constants.guide_link,
-            "Official Phone Support":   "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
             "Community Discord Server": self.constants.discord_link,
         }
 
