@@ -1,4 +1,4 @@
-# OpenCore Legacy Patcher 3.1.6 - Tahoe Patch Set (YBronst)
+# OCLP-YBronst 3.1.6 - Tahoe Patch Set
 
 This project continues the Tahoe patch set based on commit `lzhoang2801` from December 24, 2025, and adapts it to the new macOS Tahoe environment.
 
@@ -74,7 +74,7 @@ For systems requiring a fully functional reference environment (including sound)
 * [BarryKN](https://github.com/BarryKN)
   * Development of previous patchers, laying out much of what needs to be patched
 * [mario_bros_tech](https://github.com/mariobrostech) and the rest of the Unsupported Mac Discord
-  * Catalyst that started OpenCore Legacy Patcher
+  * Catalyst that started OCLP-YBronst 3.1.6
 * [arter97](https://github.com/arter97/)
   * [SimpleMSR](https://github.com/arter97/SimpleMSR/) to disable firmware throttling in Nehalem+ MacBooks without batteries
 * [Mr.Macintosh](https://mrmacintosh.com)
