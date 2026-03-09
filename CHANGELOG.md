@@ -14,7 +14,7 @@ AMFIPass cannot be used with OCLP 3.1.5 due to a persistent kernel panic. Instea
 - Add USB mappings for macOS 26
 - Adopt Liquid Glass-conformant app icon
 - Increment Binaries:
-- PatcherSupportPkg 1.9.7 - release
+- PatcherSupportPkg 2.0.0 - release
   - OpenCorePkg 1.0.6 - release
 
 ## 2.5.0
