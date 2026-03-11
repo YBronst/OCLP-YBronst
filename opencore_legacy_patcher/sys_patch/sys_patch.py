@@ -510,11 +510,28 @@ class PatchSysVolume:
                         except TypeError:
                             pass
 
-                        source_file = required_patches[patch][method_type][install_patch_directory][install_file] + install_patch_directory + "/" + install_file
+                        source_dir = required_patches[patch][method_type][install_patch_directory][install_file]
+                        source_file = source_dir + install_patch_directory + "/" + install_file
 
                         # Check whether to source from root
-                        if not required_patches[patch][method_type][install_patch_directory][install_file].startswith("/"):
+                        if not source_dir.startswith("/"):
                             source_file = source_files_path + "/" + source_file
+
+                        if not Path(source_file).exists():
+                            # Fallback logic for Tahoe (XNU 25)
+                            # If resource for Tahoe is missing, fallback to Sequoia (XNU 24)
+                            if self.constants.detected_os == os_data.os_data.tahoe:
+                                if source_dir.endswith("-25"):
+                                    fallback_dir = source_dir[:-2] + "24"
+                                    fallback_file = fallback_dir + install_patch_directory + "/" + install_file
+                                    if not fallback_dir.startswith("/"):
+                                        fallback_file = source_files_path + "/" + fallback_file
+
+                                    if Path(fallback_file).exists():
+                                        logging.info(f"- Resource {source_dir} missing, falling back to {fallback_dir}")
+                                        required_patches[patch][method_type][install_patch_directory][install_file] = fallback_dir
+                                        source_file = fallback_file
+
                         if not Path(source_file).exists():
                             raise Exception(f"Failed to find {source_file}")
 
