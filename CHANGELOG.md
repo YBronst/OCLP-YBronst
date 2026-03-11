@@ -1,5 +1,8 @@
 # OpenCore Legacy Patcher changelog
 
+## 3.1.7
+- Implement Dynamic Fallback Mechanism: When running on macOS Tahoe (XNU 25), the root patching engine now automatically attempts to use resources with the -24 suffix (Sequoia) if the -25 directory is missing.
+
 ## 3.1.6
 Added a toggle to the 'Root Patches' sector to disable the 'Modern Audio' patch for AppleHDA restoration. This prevents unrecoverable kernel panics in macOS Tahoe without an installed KDK.
 
