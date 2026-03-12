@@ -76,9 +76,6 @@ class ModernWireless(BaseHardware):
         """
         Extended patches for Modern Wireless
         """
-        if self._xnu_major > os_data.sonoma:
-            return {}
-
         return {
             "Modern Wireless Extended": {
                 PatchType.OVERWRITE_SYSTEM_VOLUME: {
@@ -88,7 +85,7 @@ class ModernWireless(BaseHardware):
                 },
                 PatchType.MERGE_SYSTEM_VOLUME: {
                     "/System/Library/Frameworks": {
-                        **({ "CoreWLAN.framework": f"13.7.2-{self._xnu_major}" } if self._xnu_major == os_data.sonoma else {}),
+                        **({ "CoreWLAN.framework": f"13.7.2-{self._xnu_major}" } if self._xnu_major >= os_data.sonoma else {}),
                     },
                     "/System/Library/PrivateFrameworks": {
                         "CoreWiFi.framework":       f"13.7.2-{self._xnu_major}",
