@@ -73,6 +73,8 @@ class BuildBluetooth:
                 if self.computer.wifi.chipset == device_probe.Broadcom.Chipsets.AirPortBrcm4360:
                     logging.info("- Fixing Legacy Bluetooth for macOS Monterey")
                     support.BuildSupport(self.model, self.constants, self.config).enable_kext("BlueToolFixup.kext", self.constants.bluetool_version, self.constants.bluetool_path)
+                    logging.info("- Enabling Bluetooth FeatureFlags")
+                    self.config["Kernel"]["Quirks"]["ExtendBTFeatureFlags"] = True
 
             # Older Mac firmwares (pre-2012) don't support the new chipsets correctly (regardless of WiFi card)
             if self.model in smbios_data.smbios_dictionary:
@@ -80,6 +82,8 @@ class BuildBluetooth:
                     logging.info("- Fixing Legacy Bluetooth for macOS Monterey")
                     support.BuildSupport(self.model, self.constants, self.config).enable_kext("BlueToolFixup.kext", self.constants.bluetool_version, self.constants.bluetool_path)
                     self._bluetooth_firmware_incompatibility_workaround()
+                    logging.info("- Enabling Bluetooth FeatureFlags")
+                    self.config["Kernel"]["Quirks"]["ExtendBTFeatureFlags"] = True
         elif self.computer.bluetooth_chipset == "3rd Party Bluetooth 4.0 Hub":
             logging.info("- Detected 3rd Party Bluetooth Chipset")
             support.BuildSupport(self.model, self.constants, self.config).enable_kext("BlueToolFixup.kext", self.constants.bluetool_version, self.constants.bluetool_path)
@@ -100,6 +104,9 @@ class BuildBluetooth:
         if smbios_data.smbios_dictionary[self.model]["Bluetooth Model"] <= bluetooth_data.bluetooth_data.BRCM20702_v1.value:
             logging.info("- Fixing Legacy Bluetooth for macOS Monterey")
             support.BuildSupport(self.model, self.constants, self.config).enable_kext("BlueToolFixup.kext", self.constants.bluetool_version, self.constants.bluetool_path)
+            if smbios_data.smbios_dictionary[self.model]["Bluetooth Model"] == bluetooth_data.bluetooth_data.BRCM20702_v1.value:
+                logging.info("- Enabling Bluetooth FeatureFlags")
+                self.config["Kernel"]["Quirks"]["ExtendBTFeatureFlags"] = True
             if smbios_data.smbios_dictionary[self.model]["Bluetooth Model"] <= bluetooth_data.bluetooth_data.BRCM2070.value:
                 self.config["NVRAM"]["Add"]["7C436110-AB2A-4BBB-A880-FE41995C9F82"]["boot-args"] += " -btlfxallowanyaddr"
                 self._bluetooth_firmware_incompatibility_workaround()
