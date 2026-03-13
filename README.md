@@ -7,7 +7,7 @@
 * **AMFIPass** cannot be used with OCLP 3.1.7 due to a persistent kernel panic. Instead, use the `amfi=0x80` boot argument.
 
 ### 📝 Change log
-* **Dynamic Fallback Mechanism:** When running on macOS Tahoe (XNU 25), the root patching engine now automatically attempts to use resources with the `-24` suffix (Sequoia) if the `-25` directory is missing. 
+
 * **Compatibility:** Full support for **macOS Tahoe 26.0 (25A5316i)** through **macOS 26.4 (25E5233c)**, with potential support for subsequent 26.x builds.
 * **HFS+ Removal Adaptation:** Apple removed the HFS+ file system in macOS 26.4. This version adapts the patching logic to remain compatible with the now APFS-only system environment.
 * **hdiutil Permissions:** Fixed an issue where macOS 26.4 disallowed mounting via `hdiutil` without root privileges.
