@@ -56,6 +56,9 @@ class ModernWireless(BaseHardware):
         """
         Extended modern wireless patches
         """
+        if self._xnu_major > os_data.sonoma:
+            return {}
+
         return {
             "Modern Wireless Extended": {
                 PatchType.OVERWRITE_SYSTEM_VOLUME: {
