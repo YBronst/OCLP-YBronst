@@ -55,23 +55,25 @@ class ModernWireless(BaseHardware):
     def _patches_modern_wireless_common_extended(self) -> dict:
         """
         Extended modern wireless patches
+
+        Tahoe may not ship a dedicated extended modern wireless payload set (13.7.2-25),
+        so cap extended assets to the latest known payload stream (13.7.2-24).
         """
-        if self._xnu_major > os_data.sonoma:
-            return {}
+        payload_suffix = min(self._xnu_major, os_data.sequoia)
 
         return {
             "Modern Wireless Extended": {
                 PatchType.OVERWRITE_SYSTEM_VOLUME: {
                     "/usr/libexec": {
-                        "airportd": f"13.7.2-{self._xnu_major}",
+                        "airportd": f"13.7.2-{payload_suffix}",
                     },
                 },
                 PatchType.MERGE_SYSTEM_VOLUME: {
                     "/System/Library/Frameworks": {
-                        "CoreWLAN.framework": f"13.7.2-{self._xnu_major}",
+                        "CoreWLAN.framework": f"13.7.2-{payload_suffix}",
                     },
                     "/System/Library/PrivateFrameworks": {
-                        "CoreWiFi.framework":  f"13.7.2-{self._xnu_major}",
+                        "CoreWiFi.framework":  f"13.7.2-{payload_suffix}",
                     },
                 },
             },
