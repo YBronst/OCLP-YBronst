@@ -1,8 +1,6 @@
 # Build and run from source
 
-OpenCore Legacy Patcher at its core is a Python-based GUI/CLI-based application. In turn, to run the project from source, you simply need to invoke the OpenCore-Patcher-GUI.command file via Python.
-
-For developers wishing to validate mainline changes, you may use this link: [GUI (Graphical Based App)](https://nightly.link/YBronst/OCLP-YBronst/actions/workflows/build-app-wxpython.yml)
+OCLP-YBronst at its core is a Python-based GUI/CLI-based application. In turn, to run the project from source, you simply need to invoke the OpenCore-Patcher-GUI.command file via Python.
 
 * **Warning**: Nightly builds (untagged builds built from the latest commit) are actively developed OpenCore Legacy Patcher builds. These builds have not been tested, are not guaranteed to work, and are not guaranteed to be safe. Do not use nightlies without a good reason to do so, and do not use them on your main machine. Additionally, these binaries should not be used without first consulting the [CHANGELOG](./CHANGELOG.md).
 
